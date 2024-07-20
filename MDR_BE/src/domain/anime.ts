@@ -9,6 +9,7 @@ interface AnimeProps {
     type: string;
     title: string;
     jpTitle: string;
+    urlTitle: string;
     description: string;
     studio: string;
     producers: string[];
@@ -44,6 +45,14 @@ export class Anime extends AggregateRoot<AnimeProps> {
 
   get jpTitle (): string {
     return this.props.jpTitle;
+  }
+
+  get urlTitle (): string {
+    return this.props.urlTitle;
+  }
+
+  set urlTitle ( value: string) {
+    this.props.urlTitle = value;
   }
 
   get description (): string {
@@ -95,6 +104,7 @@ export class Anime extends AggregateRoot<AnimeProps> {
     const type = animeDTO.type;
     const title = animeDTO.title;
     const jpTitle = animeDTO.jpTitle;
+    const urlTitle = animeDTO.urlTitle;
     const description = animeDTO.description;
     const studio = animeDTO.studio;
     const producers = animeDTO.producers;
@@ -109,7 +119,7 @@ export class Anime extends AggregateRoot<AnimeProps> {
     if (!!title === false || title.length === 0) {
       return Result.fail<Anime>('Must provide a role name')
     } else {
-      const anime = new Anime({ type: type, title: title, jpTitle: jpTitle, description: description, studio: studio, producers: producers, aired: aired, status: status, 
+      const anime = new Anime({ type: type, title: title, jpTitle: jpTitle, urlTitle: urlTitle, description: description, studio: studio, producers: producers, aired: aired, status: status, 
         genres: genres, episodes: episodes, duration: duration, rate: rate, imgUrl: imgUrl }, id);
       return Result.ok<Anime>( anime )
     }

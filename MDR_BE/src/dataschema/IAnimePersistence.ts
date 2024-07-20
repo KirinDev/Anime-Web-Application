@@ -3,6 +3,7 @@ export interface IAnimePersistence {
     type: string;
     title: string;
     jpTitle: string;
+    urlTitle: string;
     description: string;
     studio: string;
     producers: string[];

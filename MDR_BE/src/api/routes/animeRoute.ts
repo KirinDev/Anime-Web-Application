@@ -51,4 +51,7 @@ export default (app: Router) => {
       }),
     }),
     (req, res, next) => ctrl.updateAnime(req, res, next) );
+
+    route.get('/:urlTitle', 
+      (req, res, next) => ctrl.getAnimeByUrlTitle(req, res, next));
 };

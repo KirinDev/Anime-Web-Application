@@ -63,4 +63,15 @@ export default class AnimeRepo implements IAnimeRepo {
     else
       return null;
   }
+
+  public async findByUrlTitle (urlTitle: string): Promise<Anime> {
+    const query = { urlTitle: urlTitle};
+    const animeRecord = await this.animeSchema.findOne( query as FilterQuery<IAnimePersistence & Document> );
+
+    if( animeRecord != null) {
+      return AnimeMap.toDomain(animeRecord);
+    }
+    else
+      return null;
+  }
 }

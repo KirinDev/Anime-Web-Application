@@ -7,6 +7,7 @@ const AnimeSchema = new mongoose.Schema(
     type: { type: String },
     title: { type: String, unique: true },
     jpTitle: { type: String, unique: true },
+    urlTitle: { type: String, unique: true },
     description: { type: String },
     studio: { type: String },
     producers: { type: String },

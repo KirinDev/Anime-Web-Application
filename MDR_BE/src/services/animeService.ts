@@ -70,4 +70,20 @@ export default class AnimeService implements IAnimeService {
     }
   }
 
+  public async getAnimeByUrlTitle(urlTitle: string): Promise<Result<IAnimeDTO>> {
+    try {
+      const anime = await this.animeRepo.findByUrlTitle(urlTitle);
+
+      if (anime === null) {
+        return Result.fail<IAnimeDTO>("Anime not found");
+      }
+      else {
+        const animeDTOResult = AnimeMap.toDTO( anime ) as IAnimeDTO;
+        return Result.ok<IAnimeDTO>( animeDTOResult )
+        }
+    } catch (e) {
+      throw e;
+    }
+  }
+
 }

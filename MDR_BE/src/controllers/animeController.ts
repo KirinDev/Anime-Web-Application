@@ -43,4 +43,21 @@ export default class AnimeController implements IAnimeController {
       return next(e);
     }
   };
+
+  public async getAnimeByUrlTitle(req: Request, res: Response, next: NextFunction) {
+    try {
+      let urlTitle = req.params.urlTitle;
+      const animeOrError = await this.animeServiceInstance.getAnimeByUrlTitle(urlTitle) as Result<IAnimeDTO>;
+
+      if (animeOrError.isFailure) {
+        return res.status(404).send();
+      }
+
+      const animeDTO = animeOrError.getValue();
+      return res.status(201).json( animeDTO );
+    }
+    catch (e) {
+      return next(e);
+    }
+  };
 }
